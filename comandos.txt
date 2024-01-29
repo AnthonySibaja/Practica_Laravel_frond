@@ -1,1 +1,10 @@
 instalar form y html:composer require laravelcollective/html
+
+para instalar paquetes:composer require laravel/ui
+
+para generar vistas:php artisan ui bootstrap --auth
+para correr  npm run dev  
+instalar viter:npm install --save-dev vite
+limpiar configuracion:php artisan config:clear
+
+subir el maddleware y bajarlo :php artisan up/down
