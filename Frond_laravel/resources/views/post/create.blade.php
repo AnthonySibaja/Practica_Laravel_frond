@@ -4,12 +4,19 @@
 
     <h1>Crear nuevo Post</h1>
     @csrf
-    {!! Form::open(['method' => 'POST', 'route' => 'post.store']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => 'post.store', 'enctype' => 'multipart/form-data']) !!}
+
 
     <div class="form-gruop">
         {!! Form::label('titulo','titulo')!!}
         {!! Form::text('titulo',null,['class'=>'form-control'])!!}
     </div>
+
+    
+    <div class="form-gruop">
+        {!! Form::file('file',['class'=>'form-control'])!!}
+    </div>
+
 
     {!! Form::submit('Create Post', ['class'=>'form-control']) !!}
 

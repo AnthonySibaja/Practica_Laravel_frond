@@ -12,11 +12,15 @@ class Post extends Model
    // protected $dates =['deleted_at'];
 
     //use SoftDeletes;
+
+    public $directory = "/images/";
+
     protected $table = 'post';
     protected $fillable =[
         'user_id',
         'titulo',
-        'body'
+        'body',
+        'path'
     ];
 
 
@@ -32,6 +36,11 @@ class Post extends Model
     public function tags(){
         return $this->morphToMany('App\Models\Tag', 'taggable');
     }
-
+    public static function scopeLatest($query){
+        return $query->orderBy('id','asc')->get();
+    }
+    public function getPathAttribute($value) {
+        return $this->directory . $value;
+    }
     
 }

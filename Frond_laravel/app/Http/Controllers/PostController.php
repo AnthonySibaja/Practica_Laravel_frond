@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
+        $post = Post::latest()->get();
         return view('post.index',compact('post'));
     }
 
@@ -38,16 +38,39 @@ class PostController extends Controller
 
 
     public function store(CreatePostRequest $request)
-    {
-        
+    {   
+        $input = $request->all();
+        if($file = $request->file('file')){
+            $name =$file->getClientOriginalName();
+            $file->move('images', $name);
+            $input['path'] = $name;
+
+        }
+
+        Post::create($input);
+
+
+
+
+        // if ($request->hasFile('file')) {
+        //     $file = $request->file('file');
+        //     echo "<br>";
+        //     echo $file->getClientOriginalName();
+        //     echo "<br>";
+        //     echo $file->getSize();
+        // } else {
+        //     echo "No se ha enviado ningún archivo.";
+        // }
+
+
         // $this->validate($request, [
         //     'titulo'=>'required',
         //     'boby'=>'required'
         // ]);
 
 
-        Post::create($request->all());
-        return redirect('/post');
+        // Post::create($request->all());
+        // return redirect('/post');
     }
 
     /**
