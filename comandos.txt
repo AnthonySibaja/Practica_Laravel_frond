@@ -8,3 +8,4 @@ instalar viter:npm install --save-dev vite
 limpiar configuracion:php artisan config:clear
 
 subir el maddleware y bajarlo :php artisan up/down
+para poder mandar correos composer require guzzlehttp/guzzle
