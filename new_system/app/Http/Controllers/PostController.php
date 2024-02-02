@@ -13,4 +13,18 @@ class PostController extends Controller
        // Post::findOrFail($id);
         return view('blog-post', ['post'=>$post]);
     }
+    public function create(){
+        
+      
+        return view('admin.posts.create');
+     }
+     public function store(){
+        
+      
+        //dd(request()->all());
+
+        auth()->user();
+     }
+
+
 }
