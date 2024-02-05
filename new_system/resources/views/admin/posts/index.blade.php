@@ -34,7 +34,9 @@
                     @foreach($posts as $post)
                     <tr>
                       <td>{{$post->id}}</td>
+
                       <td>{{$post->user->name}}</td>
+                      
                       <td>{{$post->titulo}}</td>
                       <td>
                         <img height="40px" src="{{$post->post_image}}" alt="">
