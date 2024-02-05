@@ -44,7 +44,8 @@
 
                       <td>{{$post->user->name}}</td>
                       
-                      <td>{{$post->titulo}}</td>
+                      <td><a href="{{route('post.edit', $post->id)}}">{{$post->titulo}}</a></td>
+
                       <td>
                         <img height="40px" src="{{$post->post_image}}" alt="">
                       </td>

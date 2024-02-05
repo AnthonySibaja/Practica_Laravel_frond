@@ -45,6 +45,12 @@ class PostController extends Controller
          return redirect()->route('post.index');
   
      }
+     public function edit(Post $post){
+         
+         return view('admin.posts.edit', ['posts'=>$post]);
+     }
+
+
      public function destroy(Post $post,Request $request){
             $post->delete();
             $request->flash('message', 'Post was deleted');
