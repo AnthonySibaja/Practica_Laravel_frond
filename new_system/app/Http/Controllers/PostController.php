@@ -20,10 +20,21 @@ class PostController extends Controller
      }
      public function store(){
         
-      
+         $inputs = request()->validate([
+            'titulo'=>'required|min:8|max:255',
+            'post_image'=>'file',
+            'body'=>'required'
+         ]);
+         if(request('post_image')){
+            $inputs['post_image']=request('post_image')->store('iamges');
+         }
+
+
         //dd(request()->all());
 
-        auth()->user();
+        //auth()->user();
+
+
      }
 
 
