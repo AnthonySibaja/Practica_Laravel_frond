@@ -3,8 +3,9 @@
     
         <h1>Edit a Post</h1>
 
-        <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
             <div class="form-group">
                 <label for="titulo">Titulo</label>
                 <input type="text" 
@@ -13,12 +14,12 @@
                 id="titulo" 
                 aria-describedby="" 
                 placeholder="Enter Titulo"
-                value="{{$posts->titulo}}"
+                value="{{$post->titulo}}"
                 >
             </div>
     
             <div class="form-group">
-                <div><img height="100px" src="{{$posts->post_image}}" alt=""></div>
+                <div><img height="100px" src="{{$post->post_image}}" alt=""></div>
                 <label for="file">Image</label>
                 <input type="file" 
                 name="post_image" 
@@ -27,15 +28,8 @@
             </div>
     
     
-            <div class="form-group">
-               <textarea name="body" 
-               class="form-control"
-               id="body" 
-               cols="30" 
-               rows="10"
-               
-               >value="{{$posts->body}}"</textarea>
-            </div>
+            <textarea name="body" class="form-control" id="body" cols="30" rows="10">{{ $post->body }}</textarea>
+
     
     
             <button type="submit" class="btn btn-primary">Submit</button>
