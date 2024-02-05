@@ -15,11 +15,11 @@
         </div>
 
         <div class="form-group">
-            <label for="file">file</label>
+            <label for="file">Image</label>
             <input type="file" 
             name="post_image" 
             class="form-control-file" 
-            id="post_image" >    
+            id="post_image">
         </div>
 
 

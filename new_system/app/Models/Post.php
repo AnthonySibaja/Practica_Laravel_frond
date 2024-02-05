@@ -16,11 +16,12 @@ class Post extends Model
 
     }
     
-    // public function setPostImageAttribute($value){
-    //     $this->attributes['post_image']=asset($value);
-    // }
 
-    public function getPostImageAttribute($value){
-        return asset($value);
-    }
+    public function getPostImageAttribute($value) {
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+        return asset('storage/' . $value);
+        }
+    
 }
