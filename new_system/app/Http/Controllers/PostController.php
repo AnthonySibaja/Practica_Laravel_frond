@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     //
    public function index(){
-      $post=Post::all();
+      $post=auth()->user()->posts;
      // $posts = auth()->user()->posts();
       //dd($posts);
       return view('admin.posts.index', ['posts'=> $post]);
@@ -23,12 +23,12 @@ class PostController extends Controller
     }
     public function create(){
         
-      
+         $this->authorize('create',  Post::class);
         return view('admin.posts.create');
      }
      
      public function store(Request $request){
-        
+      $this->authorize('create',  Post::class);
          $inputs = request()->validate([
             'titulo'=>'required|min:8|max:255',
             'post_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -50,7 +50,7 @@ class PostController extends Controller
      
       $this->authorize('view', $post);
       if(auth()->user()->can('view',$post)){
-         
+
       }
      
       return view('admin.posts.edit', ['post' => $post]);
@@ -59,9 +59,12 @@ class PostController extends Controller
 
 
      public function destroy(Post $post,Request $request){
-            $post->delete();
+            
+      $this->authorize('delete', $post);
+      $post->delete();
             $request->session()->flash('message', 'Post was deleted');
             return back();
+
      }
 
      public function update(Post $post){
