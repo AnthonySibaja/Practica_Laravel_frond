@@ -10,10 +10,10 @@ class PostController extends Controller
 {
     //
    public function index(){
-
-      $posts = auth()->user()->posts();
-      dd($posts);
-      return view('admin.posts.index', ['posts'=> $posts]);
+      $post=Post::all();
+     // $posts = auth()->user()->posts();
+      //dd($posts);
+      return view('admin.posts.index', ['posts'=> $post]);
    }
 
     public function show(Post $post){
@@ -47,6 +47,12 @@ class PostController extends Controller
   
      }
      public function edit(Post $post){
+     
+      $this->authorize('view', $post);
+      if(auth()->user()->can('view',$post)){
+         
+      }
+     
       return view('admin.posts.edit', ['post' => $post]);
    }
   
@@ -73,6 +79,8 @@ class PostController extends Controller
          $post->titulo = $inputs['titulo'];
          $post->body = $inputs['body'];
          $post->save();
+
+         $this->authorize('update', $post);
          session()->flash('post-updated-message', ' Post with titulo was update ', $inputs['titulo']);
 
          //auth()->user()->posts()->save($post);
